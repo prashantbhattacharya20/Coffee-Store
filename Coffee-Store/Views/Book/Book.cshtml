@@ -1,0 +1,43 @@
+﻿@model Reservations
+@{
+    if (TempData["showAlert"] != null)
+    {
+        <script>
+            alert('Item added to cart successfully');
+        </script>
+    }
+    if (TempData["error"] != null)
+    {
+        <script>
+            alert('@TempData["error"]');
+        </script>
+    }
+}
+
+<section class="book" id="book">
+    <h1 class="heading">booking</h1>
+    <h1 class="heading"><span>reserve a table</span></h1>
+
+    <div class="book-form">
+        <form method="post">
+            <input asp-for="Name" type="text" placeholder="Name" class="box" id="name" required />
+            <input asp-for="Email" type="email" placeholder="Email" class="box" id="email" required />
+            <input asp-for="PhoneNumber" type="number" placeholder="Phone Number" class="box" id="phone" required />
+            <div class="datetime">
+                <input asp-for="ReservationDate" type="date" placeholder="Date" class="box" id="date" required />
+                <input asp-for="ReservationTime" type="time" placeholder="Time" class="box" id="time" step="900" required />
+            </div>
+            <select asp-for="NumberOfPersons" class="box" id="persons" required>
+                <option value="">Number of Persons</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+            <textarea asp-for="Message" placeholder="Message" class="box" id="" cols="30" rows="10"></textarea>
+            <button type="submit" class="add-new-menu-item-btn">Submit</button>
+        </form>
+    </div>
+</section>

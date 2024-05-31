@@ -1,0 +1,65 @@
+﻿@model User
+@{
+    if (TempData["success"] != null)
+    {
+        <script>
+            alert('@TempData["success"]');
+        </script>
+    }
+}
+
+<section class="signup" id="signup">
+    <h1 class="heading">Sign Up</h1>
+    <h1 class="heading"><span>Enter your details to create an account!</span></h1>
+
+    <div class="signup-container">
+        <form method="post" class="signup-box">
+            <div class="signup-row">
+                <div class="signup-item">
+                    <label for="fullname">Full Name</label>
+                    <input asp-for="Name" type="text" id="fullname" placeholder="Full Name" required/>
+                </div>
+                <div class="signup-item">
+                    <label for="dob">Date of Birth</label>
+                    <input asp-for="DateOfBirth" type="date" id="dob" required/>
+                </div>
+            </div>
+
+            <div class="signup-row">
+                <div class="signup-item">
+                    <label for="email">Email</label>
+                    <input asp-for="Email" type="email" id="email" placeholder="Email" required/>
+                </div>
+                <div class="signup-item">
+                    <label for="password">Password</label>
+                    <input asp-for="Password" type="password" id="password" placeholder="Password" required/>
+                </div>
+            </div>
+
+            <div class="signup-row">
+                <div class="signup-item">
+                    <label for="phone">Phone Number</label>
+                    <input asp-for="PhoneNumber" type="tel" id="phone" placeholder="Phone Number" required pattern="[0-9]{10}" />
+                </div>
+                <div class="signup-item">
+                    <label for="username">Username</label>
+                    <input asp-for="Username" type="username" id="username" placeholder="Username" required/>
+                </div>
+            </div>
+
+            <div class="signup-item">
+                <label for="address">Address</label>
+                <textarea asp-for="Address" id="address" placeholder="Address" required></textarea>
+            </div>
+
+            <div class="signup-item">
+                <input type="checkbox" class="checkbox" id="terms" required>
+                <label for="terms">I agree to the terms of service and privacy policy</label>
+            </div>
+
+            <button class="signup-btn">Sign Up</button>
+            <p class="signup-prompt">Already have an account?</p>
+            <a href="/Login/Login" class="login-btn">Login</a>
+        </form>
+    </div>
+</section>

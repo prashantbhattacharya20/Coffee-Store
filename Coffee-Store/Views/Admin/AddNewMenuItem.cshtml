@@ -1,0 +1,32 @@
+﻿@model Menu
+
+<section class="add-menu-item" id="add-menu-item">
+    <h1 class="heading"><span>Add New Menu Item</span></h1>
+
+    <form method="post" class="add-new-form">
+        <div class="form-field">
+            <label for="itemName">Item Name</label>
+            <input asp-for="ItemName" type="text" id="itemName" required/>
+        </div>
+
+        <div class="form-field">
+            <label for="description">Description</label>
+            <input asp-for="Description" type="text" id="description" required/>
+        </div>
+
+        <div class="form-field">
+            <label for="price">Price</label>
+            <input asp-for="Price" type="number" id="price" required/>
+        </div>
+
+        <div class="form-field">
+            <label for="url">Image URL</label>
+            <input asp-for="Url" type="text" id="url" required/>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="add-new-menu-item-btn">Submit</button>
+            <a href="/Admin/Admin" class="go-back-button">Back</a>
+        </div>
+    </form>
+</section>

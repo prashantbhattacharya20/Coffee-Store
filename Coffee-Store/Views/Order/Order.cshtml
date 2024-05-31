@@ -1,0 +1,44 @@
+﻿@model List<Menu>
+
+@{
+    if(TempData["showAlert"] != null)
+    {
+        <script>
+            alert('Item added to cart successfully');
+        </script>
+    }
+    if (TempData["error"] != null)
+    {
+        <script>
+            alert('@TempData["error"]');
+        </script>
+    }
+}
+
+
+<section class="orders" id="order">
+    <h1 class="heading">Order</h1>
+    <h1 class="heading"><span>Order your perfect brew now!</span></h1>
+
+    <div class="order-container">
+        @foreach (var obj in Model)
+        {
+            <div class="order-item">
+                <img src="/images/@obj.Url" alt="@obj.ItemName" class="item-image" />
+                <h3>@obj.ItemName</h3>
+                <div class="content">
+                    <span>₹@obj.Price</span>
+                </div>
+                <form method="post" asp-controller="Order" asp-action="AddToCart">
+                    <div class="quantity">
+                        <button type="button" class="decrease">-</button>
+                        <input type="text" name="quantity" value="0" min="0" max="99" onchange="validateQuantity(this)" />
+                        <button type="button" class="increase">+</button>
+                    </div>
+                    <input type="hidden" name="itemId" value="@obj.ItemID" />
+                    <button type="submit" class="add-to-cart">Add to Cart</button>
+                </form>
+            </div>
+        }
+    </div>
+</section>

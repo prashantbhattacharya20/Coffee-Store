@@ -1,0 +1,36 @@
+﻿@model List<Reservations> 
+
+<section class="reservations" id="reservations">
+    <h1 class="heading"><span>Check Table Reservations</span></h1>
+
+    <table class="reservations-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Reservation Date</th>
+                <th>Reservation Time</th>
+                <th>Number of Persons</th>
+                <th>Message</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var obj in Model.OrderBy(u => u.ReservationId))
+            {
+                <tr class="reservations-item">
+                    <td>@obj.Name</td>
+                    <td>@obj.Email</td>
+                    <td>@obj.PhoneNumber</td>
+                    <td>@obj.ReservationDate</td>
+                    <td>@obj.ReservationTime</td>
+                    <td>@obj.NumberOfPersons</td>
+                    <td>@obj.Message</td>
+                </tr>
+            } 
+        </tbody>
+    </table>
+    <div class="form-actions">
+        <a href="/Admin/Admin" class="go-back-button">Back</a>
+    </div>
+</section>

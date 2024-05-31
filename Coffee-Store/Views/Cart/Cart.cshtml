@@ -1,0 +1,41 @@
+﻿@model List<CartItem>
+
+@{
+    if (TempData["success"] != null)
+    {
+        <script>
+            alert('@TempData["success"]');
+        </script>
+    }
+}
+
+
+<section class="cart" id="cart">
+    <div class="heading-container">
+        <h1 class="heading">Cart</h1>
+    </div>
+
+    <div class="cart-container">
+        @foreach (var item in Model)
+        {
+            <div class="cart-item">
+                <h3>@item.Menu.ItemName</h3>
+                <div class="quantity">
+                    <input type="text" value="@item.Quantity" readonly>
+                </div>
+                <p class="subtotal">Subtotal: ₹@(item.Quantity * item.Menu.Price)</p>
+            </div>
+        }
+
+        <div class="total">
+            <h3>Total: ₹@Model.Sum(item => item.Quantity * item.Menu.Price)</h3>
+        </div>
+    </div>
+
+    <div class="button-container">
+        <button class="order-now">Order Now</button>
+        <form method="post" action="/Cart/ClearCart">
+            <input type="submit" class="clear-cart" value="Clear Cart" />
+        </form>
+    </div>
+</section>

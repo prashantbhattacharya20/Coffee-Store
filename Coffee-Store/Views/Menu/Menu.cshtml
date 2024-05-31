@@ -1,0 +1,22 @@
+﻿@model List<Menu>
+
+<section class="menu" id="menu">
+    <h1 class="heading">menu</h1>
+    <h1 class="heading"><span>Indulge in Every Sip</span></h1>
+
+    <div class="box-container">
+        @foreach (var obj in Model)
+        {
+            <a href="#" class="box">
+                <img src="/images/@obj.Url" alt="" />
+                <div class="content">
+                    <h3>@obj.ItemName</h3>
+                    <p>
+                        @obj.Description
+                    </p>
+                    <span>₹@obj.Price</span>
+                </div>
+            </a>
+        }
+    </div>
+</section>

@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Prashant Bhattacharya" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Coffee Store</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Coffee_Store.styles.css" asp-append-version="true" />
+</head>
+
+<body>
+
+
+    <header class="header">
+        <div id="menu-btn" class="fas fa-bars"></div>
+
+        <a asp-controller="Home" asp-action="Index" class="logo-img"><img src="/images/logo.png" alt="logo" /></a>
+
+        <nav class="navbar">
+            <a asp-controller="Home" asp-action="Index">Home</a>
+            <a asp-controller="About" asp-action="About">About</a>
+            <a asp-controller="Menu" asp-action="Menu">Menu</a>
+            <a asp-controller="Order" asp-action="Order">Order</a>
+            <a asp-controller="Book" asp-action="Book">Reserve a table</a>
+
+            @if (!string.IsNullOrEmpty(Context.Session.GetString("username")) && Context.Session.GetString("username") == "Admin")
+            {
+                <a asp-controller="Admin" asp-action="Admin">Admin</a>
+            }
+        </nav>
+
+        @if (string.IsNullOrEmpty(Context.Session.GetString("username")))
+        {
+            <a asp-controller="Login" asp-action="Login" class="btn">Login | Signup</a>
+        }
+        else
+        {
+            <a asp-controller="Login" asp-action="Logout" class="btn">Logout</a>
+        }
+
+        <a asp-controller="Cart" asp-action="Cart" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
+    </header>
+
+
+    <div class="container-fluid">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <section class="footer">
+        <div class="box-container">
+            <div class="box">
+                <h3>Our Branches</h3>
+                <a href="#"><i class="fas fa-arrow-right"></i> Bangalore</a>
+                <a href="#"><i class="fas fa-arrow-right"></i> Mumbai</a>
+                <a href="#"><i class="fas fa-arrow-right"></i> Chennai</a>
+                <a href="#"><i class="fas fa-arrow-right"></i> Hyderabad</a>
+                <a href="#"><i class="fas fa-arrow-right"></i> Ahmedabad</a>
+            </div>
+
+            <div class="box">
+                <h3>Quick Links</h3>
+                <a asp-controller="Home" asp-action="Home"><i class="fas fa-arrow-right"></i> Home</a>
+                <a asp-controller="About" asp-action="About"><i class="fas fa-arrow-right"></i> About</a>
+                <a asp-controller="Menu" asp-action="Menu"><i class="fas fa-arrow-right"></i> Menu</a>
+                <a asp-controller="Order" asp-action="Order"><i class="fas fa-arrow-right"></i> Order</a>
+                <a asp-controller="Book" asp-action="Book"><i class="fas fa-arrow-right"></i> Reserve a Table</a>
+            </div>
+
+            <div class="box">
+                <h3>Contact Info</h3>
+                <a href="#"><i class="fas fa-phone"></i> +123-456-7890</a>
+                <a href="#"><i class="fas fa-envelope"></i> coffee@gmail.com</a>
+                <a href="#"><i class="fas fa-envelope"></i> Chennai, India</a>
+            </div>
+
+            <div class="box">
+                <h3>Contact Info</h3>
+                <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
+                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+                <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="#"><i class="fab fa-linkedin"></i> Linkedin</a>
+            </div>
+        </div>
+
+        <div class="credit">
+            Created by <span>Prashant Bhattacharya</span> | All rights reserved
+        </div>
+    </section>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
